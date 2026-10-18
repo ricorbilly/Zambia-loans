@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zamtel Loans - Demo</title>
+<style>
+:root {
+  --red: #e30613;
+  --dark: #252525;
+  --light: #fff;
+  --bg: #f5f5f5;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+}
+header {
+  background: var(--red);
+  color: white;
+  padding: 22px 18px;
+  text-align: center;
+}
+.logo {
+  font-size: 29px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+header p { margin: 7px 0 0; }
+.demo {
+  background: #fff4d8;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: #704e00;
+}
+.container {
+  width: min(100% - 28px, 440px);
+  margin: 24px auto 100px;
+}
+.progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+.progress span {
+  flex: 1;
+  height: 5px;
+  border-radius: 5px;
+  background: #ddd;
+}
+.progress span.active { background: var(--red); }
+.card {
+  background: white;
+  padding: 23px;
+  border-radius: 16px;
+  box-shadow: 0 5px 24px #0000000d;
+}
+h2 { margin-top: 0; font-size: 23px; }
+.muted { color: #777; font-size: 14px; line-height: 1.6; }
+.amount {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--red);
+  text-align: center;
+  margin: 28px 0 18px;
+}
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--red);
+}
+.limits {
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 12px;
+}
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 20px 0 8px;
+}
+input:not([type="range"]) {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 9px;
+  font-size: 16px;
+  outline-color: var(--red);
+}
+button {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.primary {
+  background: var(--red);
+  color: white;
+}
+.secondary {
+  background: #f1f1f1;
+  color: #333;
+}
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 10px;
+  margin-top: 25px;
+}
+.actions.single { grid-template-columns: 1fr; }
+.notice {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.5;
+  margin-top: 18px;
+}
+.hidden { display: none !important; }
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 12px 16px;
+  box-shadow: 0 -3px 15px #00000010;
+}
+footer button { max-width: 440px; display: block; margin: auto; }
+.status { color: #277344; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ZAMTEL</div>
+  <p>Loans Application Demo · Zambia</p>
+</header>
+
+<div class="demo">
+  DEMO ONLY — Unofficial prototype, not a live Zamtel loan service.
+</div>
+
+<main class="container">
+  <div class="progress" aria-label="Application progress">
+    <span class="active"></span><span></span><span></span>
+    <span></span><span></span>
+  </div>
+
+  <section class="card">
+    <!-- PAGE 1 -->
+    <div class="page" id="page1">
+      <h2>Choose your loan amount</h2>
+      <p class="muted">Select the amount you would like to request.</p>
+
+      <div class="amount">
+        K <span id="amountLabel">1,000</span>
+      </div>
+      <input id="loanAmount" type="range"
+        min="500" max="20000" step="500" value="1000"
+        aria-label="Loan amount">
+
+      <div class="limits">
+        <span>K 500</span><span>K 20,000</span>
+      </div>
+
+      <p class="notice">
+        This is a demonstration only. No loan approval or disbursement
+        is offered. Rates and repayment terms are not represented here.
+      </p>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page hidden" id="page2">
+      <h2>Phone number</h2>
+      <p class="muted">Enter a Zambian mobile number for this demo.</p>
+      <label for="phone">Mobile number</label>
+      <input id="phone" type="tel" placeholder="0971234567"
+        autocomplete="tel" maxlength="13">
+      <p class="notice">Use a test number. This demo does not send SMS messages.</p>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page hidden" id="page3">
+      <h2>OTP demo verification</h2>
+      <p class="muted">Enter the demonstration code below to continue.</p>
+      <p><strong>Demo code: 123456</strong></p>
+      <label for="otp">Demo verification code</label>
+      <input id="otp" type="text" inputmode="numeric"
+        placeholder="Enter 123456" maxlength="6"
+        autocomplete="off">
+      <p class="notice">No real OTP is sent, requested, or verified.</p>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page hidden" id="page4">
+      <h2>Demo security step</h2>
+      <p class="muted">
+        Continue without entering your real mobile-money or account PIN.
+      </p>
+      <label for="demoPin">Demo code (not your account PIN)</label>
+      <input id="demoPin" type="password" inputmode="numeric"
+        placeholder="Enter any 4 digits" maxlength="4"
+        autocomplete="off">
+      <p class="notice">
+        Use any four digits for this prototype. The value is not stored
+        or sent to a server.
+      </p>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page hidden" id="page5">
+      <h2>Your personal details</h2>
+      <p class="muted">Complete the demo application details.</p>
+
+      <label for="fullName">Full name</label>
+      <input id="fullName" type="text"
+        placeholder="Enter your full name" autocomplete="name">
+
+      <label for="email">Email address</label>
+      <input id="email" type="email"
+        placeholder="you@example.com" autocomplete="email">
+
+      <p class="notice">
+        Your details remain in this page only. Do not enter sensitive
+        or real financial credentials.
+      </p>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page hidden" id="page6">
+      <h2>Demo application complete</h2>
+      <p class="status">Your demonstration is complete!</p>
+      <p class="muted">
+        This prototype has not sent an application, checked eligibility,
+        approved a loan, or transferred money.
+      </p>
+      <p>Selected amount: <strong id="summaryAmount">K 1,000</strong></p>
+      <button type="button" class="secondary" id="restart">
+        Start again
+      </button>
+    </div>
+
+    <div class="actions" id="actions">
+      <button type="button" class="secondary" id="back">Back</button>
+      <button type="button" class="primary" id="next">Apply Now</button>
+    </div>
+  </section>
+</main>
+
+<footer id="stickyFooter">
+  <button type="button" class="primary" id="applyButton">
+    Apply for Loan
+  </button>
+</footer>
+
+<script>
+const amount = document.getElementById("loanAmount");
+const amountLabel = document.getElementById("amountLabel");
+const pages = [...document.querySelectorAll(".page")];
+const bars = [...document.querySelectorAll(".progress span")];
+const back = document.getElementById("back");
+const next = document.getElementById("next");
+const applyButton = document.getElementById("applyButton");
+const actions = document.getElementById("actions");
+const stickyFooter = document.getElementById("stickyFooter");
+
+let current = 1;
+
+function formatAmount(value) {
+  return Number(value).toLocaleString("en-US");
+}
+
+amount.addEventListener("input", () => {
+  amountLabel.textContent = formatAmount(amount.value);
+});
+
+function showPage(number) {
+  current = number;
+
+  pages.forEach((page, index) => {
+    page.classList.toggle("hidden", index !== number - 1);
+  });
+
+  bars.forEach((bar, index) => {
+    bar.classList.toggle("active", index < Math.min(number, 5));
+  });
+
+  actions.classList.toggle("single", number === 1 || number === 6);
+  back.classList.toggle("hidden", number === 1 || number === 6);
+  next.classList.toggle("hidden", number === 6);
+
+  next.textContent = number === 5 ? "Submit Demo Application" :
+    number === 6 ? "Completed" : "Continue";
+
+  applyButton.textContent = number === 5 ?
+    "Submit Demo Application" : "Apply for Loan";
+
+  stickyFooter.classList.toggle("hidden", number === 6);
+  document.getElementById("summaryAmount").textContent =
+    "K " + formatAmount(amount.value);
+}
+
+function validateCurrentPage() {
+  if (current === 2) {
+    const phone = document.getElementById("phone").value.trim();
+    if (!/^(?:\+260|0)?[79]\d{8}$/.test(phone)) {
+      alert("Enter a valid Zambian mobile number.");
+      return false;
+    }
+  }
+
+  if (current === 3) {
+    if (document.getElementById("otp").value !== "123456") {
+      alert("For this demo, enter code 123456.");
+      return false;
+    }
+  }
+
+  if (current === 4) {
+    if (!/^\d{4}$/.test(document.getElementById("demoPin").value)) {
+      alert("Enter any four digits for the demo security step.");
+      return false;
+    }
+  }
+
+  if (current === 5) {
+    if (!document.getElementById("fullName").value.trim()) {
+      alert("Enter a demo name.");
+      return false;
+    }
+    const email = document.getElementById("email");
+    if (!email.checkValidity() || !email.value.trim()) {
+      alert("Enter a valid email address.");
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function advance() {
+  if (current === 6) return;
+  if (!validateCurrentPage()) return;
+
+  if (current === 5) {
+    document.getElementById("demoPin").value = "";
+    document.getElementById("otp").value = "";
+    showPage(6);
+  } else {
+    showPage(current + 1);
+  }
+}
+
+next.addEventListener("click", advance);
+applyButton.addEventListener("click", advance);
+
+back.addEventListener("click", () => {
+  if (current > 1) showPage(current - 1);
+});
+
+document.getElementById("restart").addEventListener("click", () => {
+  document.getElementById("phone").value = "";
+  document.getElementById("otp").value = "";
+  document.getElementById("demoPin").value = "";
+  document.getElementById("fullName").value = "";
+  document.getElementById("email").value = "";
+  amount.value = 1000;
+  amountLabel.textContent = "1,000";
+  showPage(1);
+});
+
+showPage(1);
+</script>
+</body>
+  </html>
+  
