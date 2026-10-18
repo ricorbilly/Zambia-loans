@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#087a43">
+  <title>Choose a loan amount | Zamtel Loans</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-step="amount">
+  <header class="site-header">
+    <a class="brand" href="amount.html" aria-label="Zamtel Loans">Zamtel</a>
+    <span class="header-note">Zambia · Loan application</span>
+  </header>
+  <main class="application">
+    <nav class="progress" aria-label="Application progress">
+      <span class="progress-current">01 <span>Amount</span></span>
+    </nav>
+    <section class="step-content">
+      <p class="eyebrow">YOUR LOAN REQUEST <span>01 / 05</span></p>
+      <h1>How much do<br>you need?</h1>
+      <p class="intro">Choose an amount to get started</p>
+      <form id="amount-form" class="step-form">
+        <div class="amount-display"><span>Loan amount</span> <strong id="amount-value">K 5,000</strong></div>
+        <input id="loan-amount" name="amount" type="range" min="500" max="50000" step="500" value="5000">
+        <div class="range-labels"><span>K 500</span><span>K 50,000</span></div>
+        <p class="fine-print">This is a requested amount, final amount may vary</p>
+        <button class="button button-primary" type="submit">Continue with this amount</button>
+      </form>
+      <p class="privacy-note"><span class="privacy-icon">🔒</span> Your information is protected</p>
+    </section>
+    <footer class="site-footer"><span>Secure application</span></footer>
+  </main>
+</body>
+  </html>
+  <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#087a43">
+  <title>Your phone number | Zamtel Loans</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-step="phone">
+  <header class="site-header"><a class="brand" href="amount.html">Zamtel</a></header>
+  <main class="application">
+    <nav class="progress" aria-label="Application progress">
+      <span>02 / 05</span>
+    </nav>
+    <section class="step-content">
+      <p class="eyebrow">YOUR CONTACT DETAILS <span>02 / 05</span></p>
+      <h1>What's your<br>phone number?</h1>
+      <p class="intro">Enter the Zambian mobile number linked to your Zamtel account</p>
+      <form id="phone-form" class="step-form">
+        <label class="field-label" for="phone-number">Mobile number</label>
+        <div class="phone-field"><span class="country-code">+260</span><input id="phone-number" name="phone" type="tel" placeholder="97XXXXXXX" inputmode="numeric"></div>
+        <p class="field-hint">Enter 9 digits, with or without leading 0</p>
+        <p class="form-error" id="phone-error" role="alert"></p>
+        <div class="button-row"><a class="button button-secondary" href="amount.html">Back</a><button class="button button-primary" type="submit">Continue</button></div>
+      </form>
+      <p class="privacy-note"><span class="privacy-icon">🔒</span> Secure application</p>
+    </section>
+    <footer class="site-footer"><span>Secure application</span></footer>
+  </main>
+</body>
+    </html>
